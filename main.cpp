@@ -1,71 +1,9 @@
-#include <iostream>
-
-template <typename T>
-struct element
-{
-    T value;
-    element *next;
-    element()
-    {
-        next = nullptr;
-    }
-};
-
-template <typename T>
-struct list
-{
-    element<T> *first;
-    void pushBack(const T& _value)
-    {
-        element<T> *newElement = new element<T>;
-        newElement->value = _value;
-        if (first == nullptr)
-        {
-            first = newElement;
-        }
-        else
-        {
-            element<T> *temp = first;
-            while (temp -> next)
-            {
-                temp = temp -> next;
-            }
-            temp -> next = newElement;
-            newElement -> next = nullptr;
-        }
-    }
-    void print()
-    {
-        element<T> *temp = first;
-        while (temp)
-        {
-            std::cout << temp -> value << " ";
-            temp = temp -> next;
-        }
-        std::cout << std::endl;
-    }
-    unsigned int size()
-    {
-        element<T> *temp = first;
-        unsigned int result = 0;
-
-        while (temp)
-        {
-            ++result;
-            temp = temp -> next;
-        }
-        return result;
-    }
-    list()
-    {
-        first = nullptr;
-    }
-};
+#include "Include/list.h"
 
 int main()
 {
-    list<int> *listInt = new list<int>;
-    list<std::string> *listString = new list<std::string>;
+    auto *listInt = new list<int>;
+    auto *listString = new list<std::string>;
 
     listInt -> pushBack(1);
     listInt -> pushBack(2);
@@ -83,5 +21,6 @@ int main()
 
     delete listInt;
     delete listString;
+
     return 0;
 }
