@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../Include/element.h"
+#include "element.hpp"
 
 template <typename T>
 struct list
@@ -8,7 +8,7 @@ struct list
 
     void pushBack(const T& _value)
     {
-        std::shared_ptr<element<T>> newElement = new element<T>;
+        auto newElement = std::make_shared<element<T>>(element<T>());
         newElement -> value = _value;
         if (first == nullptr)
         {
