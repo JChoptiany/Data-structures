@@ -36,6 +36,7 @@ bin/
 *.idea/*
 *cmake-build-debug/*
 *build/*
+*Build/*
 
 # Googletest
 googletest-prefix/
