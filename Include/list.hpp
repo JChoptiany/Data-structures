@@ -47,11 +47,26 @@ struct list
     void print()
     {
         std::shared_ptr<element<T>> current = first;
-        while (current)
+        while (current->next != nullptr)
         {
-            std::cout << current -> value << " ";
+            std::cout << current -> value << ' ';
             current = current -> next;
         }
+        std::cout << current -> value;
+
+        std::cout << std::endl;
+    }
+
+    void print(std::string sign)
+    {
+        std::shared_ptr<element<T>> current = first;
+        while (current->next != nullptr)
+        {
+            std::cout << current -> value << sign;
+            current = current -> next;
+        }
+        std::cout << current -> value;
+
         std::cout << std::endl;
     }
 
