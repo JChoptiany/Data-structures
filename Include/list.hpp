@@ -6,11 +6,29 @@ struct list
 {
     std::shared_ptr<element<T>> first;
 
+    void pushFront(const T& _value)
+    {
+        auto newElement = std::make_shared<element<T>>(element<T>());
+        newElement -> value = _value;
+
+        if (!first)
+        {
+            first = newElement;
+        }
+        else
+        {
+            newElement->next = first;
+            first = newElement;
+        }
+
+    }
+
     void pushBack(const T& _value)
     {
         auto newElement = std::make_shared<element<T>>(element<T>());
         newElement -> value = _value;
-        if (first == nullptr)
+
+        if (!first)
         {
             first = newElement;
         }
