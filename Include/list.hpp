@@ -1,4 +1,5 @@
 #include <iostream>
+#include <exception>
 #include "element.hpp"
 
 template <typename T>
@@ -81,6 +82,11 @@ struct list
             temp = temp -> next;
         }
         return result;
+    }
+
+    void clear()
+    {
+        first = nullptr;
     }
 
     list() : first(nullptr) {}

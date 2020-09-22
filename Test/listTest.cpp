@@ -53,13 +53,6 @@ TEST(listTest, listStringSizeShouldReturn5)
     ASSERT_EQ(listString.size(), 5);
 }
 
-TEST(listTest, listTSizeShouldReturn0)
-{
-    class T{};
-    list<T> listT;
-    ASSERT_EQ(listT.size(), 0);
-}
-
 TEST(listTest, listTSizeShouldReturn3)
 {
     class T{};
@@ -94,4 +87,18 @@ TEST(listTest, listTSizeShouldReturn4)
     listT.pushFront(t3);
     listT.pushFront(t4);;
     ASSERT_EQ(listT.size(), 4);
+}
+
+TEST(listTest, listTSizeShouldReturn0)
+{
+    class T{};
+    T t1, t2, t3, t4, t5;
+    list<T> listT;
+    listT.pushBack(t1);
+    listT.pushBack(t2);
+    listT.pushBack(t3);
+    listT.pushBack(t4);
+    listT.pushBack(t5);
+    listT.clear();
+    ASSERT_EQ(listT.size(), 0);
 }
