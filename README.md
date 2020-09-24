@@ -12,6 +12,7 @@ Methods:
   * size()
   * assign()
   * empty()
+  * find()
   
 ## Technologies
 Project is created with:
