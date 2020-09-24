@@ -89,7 +89,7 @@ TEST(listTest, listTSizeShouldReturn4)
     ASSERT_EQ(listT.size(), 4);
 }
 
-TEST(listTest, listTSizeShouldReturn0)
+TEST(listTest, listTEmptyShouldReturnTrue1)
 {
     class T{};
     T t1, t2, t3, t4, t5;
@@ -100,17 +100,17 @@ TEST(listTest, listTSizeShouldReturn0)
     listT.pushBack(t4);
     listT.pushBack(t5);
     listT.clear();
-    ASSERT_EQ(listT.size(), 0);
+    ASSERT_EQ(listT.empty(), true);
 }
 
-TEST(listTest, listEmptyShouldReturnTrue)
+TEST(listTest, listTEmptyShouldReturnTrue2)
 {
     class T{};
     list<T> listT;
     ASSERT_EQ(listT.empty(), true);
 }
 
-TEST(listTest, listEmptyShouldReturnFalse)
+TEST(listTest, listTEmptyShouldReturnFalse)
 {
     class T{};
     T t1, t2, t3, t4, t5;
@@ -121,4 +121,26 @@ TEST(listTest, listEmptyShouldReturnFalse)
     listT.pushBack(t4);
     listT.pushBack(t5);
     ASSERT_EQ(listT.empty(), false);
+}
+
+TEST(listTest, listStringFindShouldReturn2)
+{
+    list<std::string> listString;
+    listString.pushBack("one");
+    listString.pushBack("two");
+    listString.pushBack("three");
+    listString.pushBack("four");
+    listString.pushBack("five");
+    ASSERT_EQ(listString.find("three"), 2);
+}
+
+TEST(listTest, listIntFindShouldReturn4)
+{
+    list<int> listInt;
+    listInt.pushBack(81);
+    listInt.pushBack(175);
+    listInt.pushBack(1877);
+    listInt.pushBack(878452421);
+    listInt.pushBack(17);
+    ASSERT_EQ(listInt.find(17), 4);
 }

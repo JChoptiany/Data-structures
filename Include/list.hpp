@@ -105,5 +105,25 @@ struct list
         return (!first);
     }
 
+    int find(T _value)
+    {
+        std::shared_ptr<element<T>> temp = first;
+        int index = 0;
+
+        while (temp)
+        {
+            if (temp -> value == _value)
+            {
+                return index;
+            }
+            else
+            {
+                ++index;
+                temp = temp -> next;
+            }
+        }
+        return -1;
+    }
+
     list() : first(nullptr) {}
 };
