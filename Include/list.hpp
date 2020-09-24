@@ -89,5 +89,21 @@ struct list
         first = nullptr;
     }
 
+    void assign(T _value)
+    {
+        std::shared_ptr<element<T>> temp = first;
+
+        while (temp)
+        {
+            temp -> value = _value;
+            temp = temp -> next;
+        }
+    }
+
+    bool empty()
+    {
+        return (!first);
+    }
+
     list() : first(nullptr) {}
 };

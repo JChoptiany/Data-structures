@@ -102,3 +102,23 @@ TEST(listTest, listTSizeShouldReturn0)
     listT.clear();
     ASSERT_EQ(listT.size(), 0);
 }
+
+TEST(listTest, listEmptyShouldReturnTrue)
+{
+    class T{};
+    list<T> listT;
+    ASSERT_EQ(listT.empty(), true);
+}
+
+TEST(listTest, listEmptyShouldReturnFalse)
+{
+    class T{};
+    T t1, t2, t3, t4, t5;
+    list<T> listT;
+    listT.pushBack(t1);
+    listT.pushBack(t2);
+    listT.pushBack(t3);
+    listT.pushBack(t4);
+    listT.pushBack(t5);
+    ASSERT_EQ(listT.empty(), false);
+}
