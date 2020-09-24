@@ -10,6 +10,8 @@ Methods:
   * print()
   * clear()
   * size()
+  * assign()
+  * empty()
   
 ## Technologies
 Project is created with:
