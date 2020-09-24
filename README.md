@@ -3,7 +3,8 @@
 ## About project
 Simple data structures programmed for learning.
 
-## Linked list
+## Structures
+#### Singly-linked list 
 Methods:
   * pushBack() - adds an element at the end of the list
   * pushFront() - adds an element at the beginning of the list
