@@ -144,3 +144,31 @@ TEST(listTest, listIntFindShouldReturn4)
     listInt.pushBack(17);
     ASSERT_EQ(listInt.find(17), 4);
 }
+
+TEST(listTest, listTSizeShouldReturn6)
+{
+    class T{};
+    T t1, t2, t3, t4, t5, t6, t7;
+    list<T> listT;
+    listT.pushBack(t1);
+    listT.pushBack(t2);
+    listT.pushBack(t3);
+    listT.pushBack(t4);
+    listT.pushBack(t5);
+    listT.pushBack(t6);
+    listT.pushBack(t7);
+    listT.remove(3);
+
+    ASSERT_EQ(listT.size(), 6);
+}
+
+TEST(listTest, listIntAtShouldReturn15)
+{
+    list<int> listInt;
+    listInt.pushBack(-14722);
+    listInt.pushBack(7217);
+    listInt.pushBack(15);
+    listInt.pushBack(3147);
+    listInt.pushBack(15487);
+    ASSERT_EQ(listInt.at(2), 15);
+}

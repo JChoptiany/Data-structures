@@ -58,7 +58,7 @@ struct list
         std::cout << std::endl;
     }
 
-    void print(std::string sign)
+    void print(const std::string sign)
     {
         std::shared_ptr<element<T>> current = first;
         while (current->next != nullptr)
@@ -71,7 +71,7 @@ struct list
         std::cout << std::endl;
     }
 
-    unsigned int size()
+    size_t size()
     {
         std::shared_ptr<element<T>> temp = first;
         unsigned int result = 0;
@@ -89,7 +89,7 @@ struct list
         first = nullptr;
     }
 
-    void assign(T _value)
+    void assign(const T _value)
     {
         std::shared_ptr<element<T>> temp = first;
 
@@ -105,7 +105,7 @@ struct list
         return (!first);
     }
 
-    int find(T _value)
+    int find(const T _value)
     {
         std::shared_ptr<element<T>> temp = first;
         int index = 0;
@@ -123,6 +123,39 @@ struct list
             }
         }
         return -1;
+    }
+
+    void remove(const size_t _index)
+    {
+        if(_index < 0 || _index >= size())
+        {
+            throw std::out_of_range("Out of range");
+        }
+
+        std::shared_ptr<element<T>> temp = first;
+
+        if(_index == 0)
+        {
+            first = temp -> next;
+        }
+
+        for(unsigned index = 1; index < _index; index++, temp = temp -> next);
+
+        temp -> next = temp -> next -> next;
+    }
+
+    T& at(const size_t _index)
+    {
+        if(_index >= size())
+        {
+            throw std::out_of_range("Out of range!");
+        }
+        std::shared_ptr<element<T>> temp = first;
+
+        for(size_t index = 0; index < _index; index++, temp = temp -> next);
+
+        return temp -> value;
+
     }
 
     list() : first(nullptr) {}
