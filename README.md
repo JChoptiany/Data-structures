@@ -14,6 +14,8 @@ Methods:
   * assign() - sets all the values as set in parameter
   * empty() - checks if the list is empty
   * find() - returns index of searched value, if not found - returns -1
+  * remove() - removes item at selected index
+  * at() - returns the value of the item at the selected index
   
 ## Technologies
 Project is created with:
