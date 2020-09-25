@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <exception>
 #include "element.hpp"
@@ -6,6 +8,8 @@ template <typename T>
 struct list
 {
     std::shared_ptr<element<T>> first;
+
+    list() : first(nullptr) {}
 
     void pushFront(const T& _value)
     {
@@ -127,7 +131,7 @@ struct list
 
     void remove(const size_t _index)
     {
-        if(_index < 0 || _index >= size())
+        if(_index >= size())
         {
             throw std::out_of_range("Out of range");
         }
@@ -157,6 +161,4 @@ struct list
         return temp -> value;
 
     }
-
-    list() : first(nullptr) {}
 };
