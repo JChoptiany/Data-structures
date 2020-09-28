@@ -3,6 +3,8 @@
 ## About project
 Simple data structures programmed for learning.
 
+[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/JChoptiany/Data-structures.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JChoptiany/Data-structures/context:cpp)
+
 ## Structures
 #### Singly-linked list 
 Methods:
