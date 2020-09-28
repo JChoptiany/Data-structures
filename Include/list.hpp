@@ -13,8 +13,7 @@ struct list
 
     void pushFront(T);
     void pushBack(T);
-    void print();
-    void print(std::string);
+    void print(std::string = " ");
     size_t size();
     void clear();
     void assign(T);
@@ -22,6 +21,8 @@ struct list
     int find(T);
     void remove (size_t);
     T& at(size_t);
+    void popFront();
+    void popBack();
 };
 
 template <typename T>
@@ -64,29 +65,19 @@ void list<T>::pushBack(const T _value)
 }
 
 template <typename T>
-void list<T>::print()
-{
-    std::shared_ptr<element<T>> current = first;
-    while (current->next != nullptr)
-    {
-        std::cout << current -> value << ' ';
-        current = current -> next;
-    }
-    std::cout << current -> value;
-    std::cout << std::endl;
-}
-
-template <typename T>
 void list<T>::print(const std::string sign)
 {
-    std::shared_ptr<element<T>> current = first;
-    while (current->next != nullptr)
+    if(size() != 0)
     {
-        std::cout << current -> value << sign;
-        current = current -> next;
+        std::shared_ptr<element<T>> current = first;
+        while (current->next != nullptr)
+        {
+            std::cout << current->value << sign;
+            current = current->next;
+        }
+        std::cout << current->value;
+        std::cout << std::endl;
     }
-    std::cout << current -> value;
-    std::cout << std::endl;
 }
 
 template <typename T>
@@ -180,4 +171,41 @@ T& list<T>::at(const size_t _index)
     for(size_t index = 0; index < _index; index++, temp = temp -> next);
 
     return temp -> value;
+}
+
+template <typename T>
+void list<T>::popFront()
+{
+    if(size() == 0)
+    {
+        throw std::out_of_range("Container is already empty");
+    }
+    if(first != nullptr)
+    {
+        first = first -> next;
+    }
+}
+
+template <typename T>
+void list<T>::popBack()
+{
+    if(size() == 0)
+    {
+        throw std::out_of_range("Container is already empty");
+    }
+    if(size() == 1)
+    {
+        first = nullptr;
+    }
+    else if(size() > 1)
+    {
+        std::shared_ptr<element<T>> current = first;
+
+        while (current -> next -> next != nullptr)
+        {
+            current = current -> next;
+        }
+
+        current -> next = nullptr;
+    }
 }
