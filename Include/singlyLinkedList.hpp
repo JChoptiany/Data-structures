@@ -7,7 +7,8 @@
 template <typename T>
 struct singlyLinkedList
 {
-    std::shared_ptr<singlyLinkedElement<T>> first;
+    typedef singlyLinkedElement<T> element;
+    std::shared_ptr<element> first;
 
     singlyLinkedList() : first(nullptr) {}
 
@@ -28,7 +29,7 @@ struct singlyLinkedList
 template <typename T>
 void singlyLinkedList<T>::pushFront(const T _value)
 {
-    auto newElement = std::make_shared<singlyLinkedElement<T>>(singlyLinkedElement<T>(_value));
+    auto newElement = std::make_shared<element>(element(_value));
 
     if (!first)
     {
@@ -44,7 +45,7 @@ void singlyLinkedList<T>::pushFront(const T _value)
 template <typename T>
 void singlyLinkedList<T>::pushBack(const T _value)
 {
-    auto newElement = std::make_shared<singlyLinkedElement<T>>(singlyLinkedElement<T>(_value));
+    auto newElement = std::make_shared<element>(element(_value));
 
     if (!first)
     {
@@ -52,7 +53,7 @@ void singlyLinkedList<T>::pushBack(const T _value)
     }
     else
     {
-        std::shared_ptr<singlyLinkedElement<T>> current = first;
+        std::shared_ptr<element> current = first;
         while (current -> next)
         {
             current = current -> next;
@@ -67,7 +68,7 @@ void singlyLinkedList<T>::print(const std::string sign)
 {
     if(size() != 0)
     {
-        std::shared_ptr<singlyLinkedElement<T>> current = first;
+        std::shared_ptr<element> current = first;
         while (current -> next != nullptr)
         {
             std::cout << current -> value << sign;
@@ -81,7 +82,7 @@ void singlyLinkedList<T>::print(const std::string sign)
 template <typename T>
 size_t singlyLinkedList<T>::size()
 {
-    std::shared_ptr<singlyLinkedElement<T>> current = first;
+    std::shared_ptr<element> current = first;
     unsigned int result = 0;
 
     while (current)
@@ -101,7 +102,7 @@ void singlyLinkedList<T>::clear()
 template <typename T>
 void singlyLinkedList<T>::assign(const T _value)
 {
-    std::shared_ptr<singlyLinkedElement<T>> current = first;
+    std::shared_ptr<element> current = first;
 
     while (current)
     {
@@ -119,7 +120,7 @@ bool singlyLinkedList<T>::empty()
 template <typename T>
 size_t singlyLinkedList<T>::find(const T _value)
 {
-    std::shared_ptr<singlyLinkedElement<T>> current = first;
+    std::shared_ptr<element> current = first;
     int index = 0;
 
     while (current)
@@ -145,7 +146,7 @@ void singlyLinkedList<T>::remove(const size_t _index)
         throw std::out_of_range("Out of range");
     }
 
-    std::shared_ptr<singlyLinkedElement<T>> current = first;
+    std::shared_ptr<element> current = first;
 
     if(_index == 0)
     {
@@ -166,7 +167,7 @@ T& singlyLinkedList<T>::at(const size_t _index)
     {
         throw std::out_of_range("Out of range!");
     }
-    std::shared_ptr<singlyLinkedElement<T>> current = first;
+    std::shared_ptr<element> current = first;
 
     for(size_t index = 0; index < _index; index++, current = current -> next);
 
@@ -199,7 +200,7 @@ void singlyLinkedList<T>::popBack()
     }
     else if(size() > 1)
     {
-        std::shared_ptr<singlyLinkedElement<T>> current = first;
+        std::shared_ptr<element> current = first;
 
         while (current -> next -> next != nullptr)
         {
