@@ -1,4 +1,5 @@
-#include "list.hpp"
+#include "singlyLinkedList.hpp"
+#include "doubleLinkedList.hpp"
 
 int main()
 {

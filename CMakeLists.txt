@@ -27,7 +27,7 @@ set(TEST_BINARY_FILES $<TARGET_OBJECTS:source_objects_lib>
                       ${TEST_FILES}
                       ${MAIN_TEST})
 
-add_executable(data_structures_UT Test/singlyLinkedListTest.cpp)
+add_executable(data_structures_UT Test/singlyLinkedListTests.cpp)
 target_link_libraries(data_structures_UT 	${GTEST_MAIN_LIBRARY}
                                             ${GTEST_LIBRARY}
                                             ${GMOCK_MAIN_LIBRARY}
