@@ -18,7 +18,7 @@ struct list
     void clear();
     void assign(T);
     bool empty();
-    int find(T);
+    size_t find(T);
     void remove (size_t);
     T& at(size_t);
     void popFront();
@@ -28,8 +28,7 @@ struct list
 template <typename T>
 void list<T>::pushFront(const T _value)
 {
-    auto newElement = std::make_shared<element<T>>(element<T>());
-    newElement -> value = _value;
+    auto newElement = std::make_shared<element<T>>(element<T>(_value));
 
     if (!first)
     {
@@ -45,8 +44,7 @@ void list<T>::pushFront(const T _value)
 template <typename T>
 void list<T>::pushBack(const T _value)
 {
-    auto newElement = std::make_shared<element<T>>(element<T>());
-    newElement -> value = _value;
+    auto newElement = std::make_shared<element<T>>(element<T>(_value));
 
     if (!first)
     {
@@ -70,12 +68,12 @@ void list<T>::print(const std::string sign)
     if(size() != 0)
     {
         std::shared_ptr<element<T>> current = first;
-        while (current->next != nullptr)
+        while (current -> next != nullptr)
         {
-            std::cout << current->value << sign;
-            current = current->next;
+            std::cout << current -> value << sign;
+            current = current -> next;
         }
-        std::cout << current->value;
+        std::cout << current -> value;
         std::cout << std::endl;
     }
 }
@@ -83,13 +81,13 @@ void list<T>::print(const std::string sign)
 template <typename T>
 size_t list<T>::size()
 {
-    std::shared_ptr<element<T>> temp = first;
+    std::shared_ptr<element<T>> current = first;
     unsigned int result = 0;
 
-    while (temp)
+    while (current)
     {
         ++result;
-        temp = temp -> next;
+        current = current -> next;
     }
     return result;
 }
@@ -103,12 +101,12 @@ void list<T>::clear()
 template <typename T>
 void list<T>::assign(const T _value)
 {
-    std::shared_ptr<element<T>> temp = first;
+    std::shared_ptr<element<T>> current = first;
 
-    while (temp)
+    while (current)
     {
-        temp -> value = _value;
-        temp = temp -> next;
+        current -> value = _value;
+        current = current -> next;
     }
 }
 
@@ -119,21 +117,21 @@ bool list<T>::empty()
 }
 
 template <typename T>
-int list<T>::find(const T _value)
+size_t list<T>::find(const T _value)
 {
-    std::shared_ptr<element<T>> temp = first;
+    std::shared_ptr<element<T>> current = first;
     int index = 0;
 
-    while (temp)
+    while (current)
     {
-        if (temp -> value == _value)
+        if (current -> value == _value)
         {
             return index;
         }
         else
         {
             ++index;
-            temp = temp -> next;
+            current = current -> next;
         }
     }
     return -1;
@@ -147,16 +145,18 @@ void list<T>::remove(const size_t _index)
         throw std::out_of_range("Out of range");
     }
 
-    std::shared_ptr<element<T>> temp = first;
+    std::shared_ptr<element<T>> current = first;
 
     if(_index == 0)
     {
-        first = temp -> next;
+        first = current -> next;
     }
+    else
+    {
+        for(unsigned index = 1; index < _index; index++, current = current -> next);
 
-    for(unsigned index = 1; index < _index; index++, temp = temp -> next);
-
-    temp -> next = temp -> next -> next;
+        current -> next = current -> next -> next;
+    }
 }
 
 template <typename T>
@@ -166,11 +166,11 @@ T& list<T>::at(const size_t _index)
     {
         throw std::out_of_range("Out of range!");
     }
-    std::shared_ptr<element<T>> temp = first;
+    std::shared_ptr<element<T>> current = first;
 
-    for(size_t index = 0; index < _index; index++, temp = temp -> next);
+    for(size_t index = 0; index < _index; index++, current = current -> next);
 
-    return temp -> value;
+    return current -> value;
 }
 
 template <typename T>

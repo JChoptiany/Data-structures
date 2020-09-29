@@ -5,5 +5,5 @@ struct element
 {
     T value;
     std::shared_ptr<element<T>> next;
-    element() : next(nullptr) {}
+    explicit element(T _value) : value(_value), next(nullptr) {}
 };
