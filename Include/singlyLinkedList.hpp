@@ -25,6 +25,7 @@ struct singlyLinkedList
     T& at(size_t);
     void popFront();
     void popBack();
+    T& operator[](size_t);
 };
 
 template<typename T>
@@ -229,4 +230,10 @@ void singlyLinkedList<T>::popBack()
 
         current -> next = nullptr;
     }
+}
+
+template <typename T>
+T& singlyLinkedList<T>::operator[](size_t index)
+{
+    return at(index);
 }
