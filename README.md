@@ -42,6 +42,15 @@ Methods:
   * at() -  accesses specified element with bounds checking 
   * popFront() - removes the first element
   * popBack() - removes the last element
+  * min() - returns the lowest value 
+  * max() - returns the biggest value
+  * insert() - inserts element in specified index
+  * front() - accesses the first element
+  * back() - accesses the last element
+  * operator[] - accesses specified element with bounds checking 
+  * swap() - swaps two specified elements
+
+
   
 #### Stack
 Methods:
@@ -51,7 +60,7 @@ Methods:
   * clear() - removes all the elements
   * size() - returns number of elements
   * empty() - checks if the stack is empty
-  
+
 ## Technologies
 Project is created with:
 * C++

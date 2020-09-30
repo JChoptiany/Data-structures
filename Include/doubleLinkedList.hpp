@@ -24,6 +24,15 @@ struct doubleLinkedList
     T& at(size_t);
     void popFront();
     void popBack();
+    T min();
+    T max();
+    void insert(size_t, T);
+    T& operator[](size_t);
+    T& front();
+    T& back();
+
+private:
+    std::shared_ptr<doubleLinkedElement<T>> access(size_t);
 };
 
 template <typename T>
@@ -216,4 +225,109 @@ void doubleLinkedList<T>::popBack()
 
         current -> next = nullptr;
     }
+}
+
+template <typename T>
+T& doubleLinkedList<T>::operator[](const size_t index)
+{
+    return at(index);
+}
+
+template <typename T>
+T doubleLinkedList<T>::min()
+{
+    if(empty())
+    {
+        throw std::out_of_range("List is empty!");
+    }
+
+    T result = first -> value;
+    std::shared_ptr<element> current = first;
+
+    while (current)
+    {
+        if(current -> value < result)
+        {
+            result = current -> value;
+        }
+        current = current -> next;
+    }
+    return result;
+}
+
+
+template <typename T>
+T doubleLinkedList<T>::max()
+{
+    if(empty())
+    {
+        throw std::out_of_range("List is empty!");
+    }
+
+    T result = first -> value;
+    std::shared_ptr<element> current = first;
+
+    while (current)
+    {
+        if(current -> value > result)
+        {
+            result = current -> value;
+        }
+        current = current -> next;
+    }
+    return result;
+}
+
+template <typename T>
+void doubleLinkedList<T>::insert(const size_t _index, const T _value)
+{
+    if(_index > size())
+    {
+        throw std::out_of_range("Out of range!");
+    }
+    if(_index == 0)
+    {
+        pushFront(_value);
+    }
+    else if(_index == size())
+    {
+        pushBack(_value);
+    }
+    else
+    {
+        auto newElement = std::make_shared<element>(_value);
+
+        newElement -> next = access(_index-1) -> next;
+        newElement -> previous = access(_index) -> previous;
+
+        access(_index) -> previous = newElement;
+        access(_index-1) -> next = newElement;
+    }
+}
+
+template <typename T>
+std::shared_ptr<doubleLinkedElement<T>> doubleLinkedList<T>::access(const size_t _index)
+{
+    if(_index >= size())
+    {
+        throw std::out_of_range("Out of range!");
+    }
+
+    std::shared_ptr<element> current = first;
+
+    for(size_t index = 0; index < _index; index++, current = current -> next);
+
+    return current;
+}
+
+template <typename T>
+T& doubleLinkedList<T>::front()
+{
+    return at(0);
+}
+
+template <typename T>
+T& doubleLinkedList<T>::back()
+{
+    return at(size() - 1);
 }
