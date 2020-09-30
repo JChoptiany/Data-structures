@@ -27,7 +27,11 @@ struct singlyLinkedList
     void popBack();
     T min();
     T max();
+    void insert(size_t, T);
     T& operator[](size_t);
+
+private:
+    std::shared_ptr<singlyLinkedElement<T>> access(size_t);
 };
 
 template<typename T>
@@ -235,7 +239,7 @@ void singlyLinkedList<T>::popBack()
 }
 
 template <typename T>
-T& singlyLinkedList<T>::operator[](size_t index)
+T& singlyLinkedList<T>::operator[](const size_t index)
 {
     return at(index);
 }
@@ -283,4 +287,43 @@ T singlyLinkedList<T>::max()
         current = current -> next;
     }
     return result;
+}
+
+template <typename T>
+void singlyLinkedList<T>::insert(const size_t _index, const T _value)
+{
+    if(_index > size())
+    {
+        throw std::out_of_range("Out of range!");
+    }
+    if(_index == 0)
+    {
+        pushFront(_value);
+    }
+    else if(_index == size())
+    {
+        pushBack(_value);
+    }
+    else
+    {
+        auto newElement = std::make_shared<element>(_value);
+
+        newElement -> next = access(_index-1) -> next;
+        access(_index-1) -> next = newElement;
+    }
+}
+
+template <typename T>
+std::shared_ptr<singlyLinkedElement<T>> singlyLinkedList<T>::access(const size_t _index)
+{
+    if(_index >= size())
+    {
+        throw std::out_of_range("Out of range!");
+    }
+
+    std::shared_ptr<element> current = first;
+
+    for(size_t index = 0; index < _index; index++, current = current -> next);
+
+    return current;
 }
