@@ -29,6 +29,8 @@ struct singlyLinkedList
     T max();
     void insert(size_t, T);
     T& operator[](size_t);
+    T& front();
+    T& back();
 
 private:
     std::shared_ptr<singlyLinkedElement<T>> access(size_t);
@@ -326,4 +328,16 @@ std::shared_ptr<singlyLinkedElement<T>> singlyLinkedList<T>::access(const size_t
     for(size_t index = 0; index < _index; index++, current = current -> next);
 
     return current;
+}
+
+template <typename T>
+T& singlyLinkedList<T>::front()
+{
+    return at(0);
+}
+
+template <typename T>
+T& singlyLinkedList<T>::back()
+{
+    return at(size() - 1);
 }
