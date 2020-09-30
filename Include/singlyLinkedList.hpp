@@ -10,7 +10,8 @@ struct singlyLinkedList
     typedef singlyLinkedElement<T> element;
     std::shared_ptr<element> first;
 
-    singlyLinkedList() : first(nullptr) {}
+    singlyLinkedList();
+    singlyLinkedList(const std::initializer_list<T>&);
 
     void pushFront(T);
     void pushBack(T);
@@ -24,7 +25,35 @@ struct singlyLinkedList
     T& at(size_t);
     void popFront();
     void popBack();
+    T min();
+    T max();
+    void insert(size_t, T);
+    T& operator[](size_t);
+    T& front();
+    T& back();
+
+private:
+    std::shared_ptr<singlyLinkedElement<T>> access(size_t);
 };
+
+template<typename T>
+singlyLinkedList<T>::singlyLinkedList()
+{
+    first = nullptr;
+}
+
+template<typename T>
+singlyLinkedList<T>::singlyLinkedList(const std::initializer_list<T>& arguments)
+{
+    first = std::make_shared<element>(element(*arguments.begin()));
+    std::shared_ptr<element> current = first;
+
+    for(auto value = arguments.begin() + 1; value < arguments.end(); ++value)
+    {
+        current -> next = std::make_shared<element>(element(*value));
+        current = current -> next;
+    }
+}
 
 template <typename T>
 void singlyLinkedList<T>::pushFront(const T _value)
@@ -69,7 +98,7 @@ void singlyLinkedList<T>::print(const std::string sign)
     if(size() != 0)
     {
         std::shared_ptr<element> current = first;
-        while (current -> next != nullptr)
+        while (current -> next)
         {
             std::cout << current -> value << sign;
             current = current -> next;
@@ -181,7 +210,7 @@ void singlyLinkedList<T>::popFront()
     {
         throw std::out_of_range("Container is already empty");
     }
-    if(first != nullptr)
+    if(first)
     {
         first = first -> next;
     }
@@ -202,11 +231,113 @@ void singlyLinkedList<T>::popBack()
     {
         std::shared_ptr<element> current = first;
 
-        while (current -> next -> next != nullptr)
+        while (current -> next -> next)
         {
             current = current -> next;
         }
 
         current -> next = nullptr;
     }
+}
+
+template <typename T>
+T& singlyLinkedList<T>::operator[](const size_t index)
+{
+    return at(index);
+}
+
+template <typename T>
+T singlyLinkedList<T>::min()
+{
+    if(empty())
+    {
+        throw std::out_of_range("List is empty!");
+    }
+
+    T result = first -> value;
+    std::shared_ptr<element> current = first;
+
+    while (current)
+    {
+        if(current -> value < result)
+        {
+            result = current -> value;
+        }
+        current = current -> next;
+    }
+    return result;
+}
+
+
+template <typename T>
+T singlyLinkedList<T>::max()
+{
+    if(empty())
+    {
+        throw std::out_of_range("List is empty!");
+    }
+
+    T result = first -> value;
+    std::shared_ptr<element> current = first;
+
+    while (current)
+    {
+        if(current -> value > result)
+        {
+            result = current -> value;
+        }
+        current = current -> next;
+    }
+    return result;
+}
+
+template <typename T>
+void singlyLinkedList<T>::insert(const size_t _index, const T _value)
+{
+    if(_index > size())
+    {
+        throw std::out_of_range("Out of range!");
+    }
+    if(_index == 0)
+    {
+        pushFront(_value);
+    }
+    else if(_index == size())
+    {
+        pushBack(_value);
+    }
+    else
+    {
+        auto newElement = std::make_shared<element>(_value);
+
+        newElement -> next = access(_index-1) -> next;
+        access(_index-1) -> next = newElement;
+    }
+}
+
+template <typename T>
+std::shared_ptr<singlyLinkedElement<T>> singlyLinkedList<T>::access(const size_t _index)
+{
+    if(_index >= size())
+    {
+        throw std::out_of_range("Out of range!");
+    }
+
+    std::shared_ptr<element> current = first;
+
+    for(size_t index = 0; index < _index; index++, current = current -> next);
+
+    return current;
+}
+
+template <typename T>
+T& singlyLinkedList<T>::front()
+{
+    return at(0);
+}
+
+template <typename T>
+T& singlyLinkedList<T>::back()
+{
+    return at(size() - 1);
 }
