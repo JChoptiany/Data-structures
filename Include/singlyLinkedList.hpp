@@ -10,7 +10,8 @@ struct singlyLinkedList
     typedef singlyLinkedElement<T> element;
     std::shared_ptr<element> first;
 
-    singlyLinkedList() : first(nullptr) {}
+    singlyLinkedList();
+    singlyLinkedList(const std::initializer_list<T>&);
 
     void pushFront(T);
     void pushBack(T);
@@ -25,6 +26,25 @@ struct singlyLinkedList
     void popFront();
     void popBack();
 };
+
+template<typename T>
+singlyLinkedList<T>::singlyLinkedList()
+{
+    first = nullptr;
+}
+
+template<typename T>
+singlyLinkedList<T>::singlyLinkedList(const std::initializer_list<T>& arguments)
+{
+    first = std::make_shared<element>(element(*arguments.begin()));
+    std::shared_ptr<element> current = first;
+
+    for(auto value = arguments.begin() + 1; value < arguments.end(); ++value)
+    {
+        current -> next = std::make_shared<element>(element(*value));
+        current = current -> next;
+    }
+}
 
 template <typename T>
 void singlyLinkedList<T>::pushFront(const T _value)
