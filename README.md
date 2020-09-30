@@ -26,6 +26,7 @@ Methods:
   * front() - returns the first value
   * back() - returns the last value
   * operator[] - accesses specified element with bounds checking 
+  * swap() - swaps two specified elements
   
 #### Double-linked list 
 Methods:
