@@ -23,8 +23,8 @@ Methods:
   * min() - returns the lowest value 
   * max() - returns the biggest value
   * insert() - inserts element in specified index
-  * front() - returns the first value
-  * back() - returns the last value
+  * front() - accesses the first element
+  * back() - accesses the last element
   * operator[] - accesses specified element with bounds checking 
   * swap() - swaps two specified elements
   
