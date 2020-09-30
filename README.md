@@ -33,6 +33,12 @@ Methods:
   * at() -  access specified element with bounds checking 
   * popFront() - removes the first element
   * popBack() - removes the last element
+  * min() - returns the lowest value 
+  * max() - returns the biggest value
+  * insert() - inserts element in specified index
+  * front() - returns the first value
+  * back() - returns the last value
+  * operator[] - accesses specified element with bounds checking 
   
 ## Technologies
 Project is created with:
