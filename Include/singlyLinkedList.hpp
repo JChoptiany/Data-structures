@@ -274,7 +274,7 @@ T singlyLinkedList<T>::max()
 {
     if(empty())
     {
-        throw std::out_of_range("List is empty!");
+        throw std::out_of_range("Container is empty!");
     }
 
     T result = first -> value;

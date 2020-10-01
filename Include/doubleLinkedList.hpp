@@ -10,7 +10,8 @@ struct doubleLinkedList
     typedef doubleLinkedElement<T> element;
     std::shared_ptr<element> first;
 
-    doubleLinkedList() : first(nullptr) {}
+    doubleLinkedList();
+    doubleLinkedList(const std::initializer_list<T>&);
 
     void pushFront(T);
     void pushBack(T);
@@ -34,6 +35,27 @@ struct doubleLinkedList
 private:
     std::shared_ptr<doubleLinkedElement<T>> access(size_t);
 };
+
+template<typename T>
+doubleLinkedList<T>::doubleLinkedList()
+{
+    first = nullptr;
+}
+
+template<typename T>
+doubleLinkedList<T>::doubleLinkedList(const std::initializer_list<T>& arguments)
+{
+    first = std::make_shared<element>(element(*arguments.begin()));
+    std::shared_ptr<element> current = first;
+
+
+    for(auto value = arguments.begin() + 1; value < arguments.end(); ++value)
+    {
+        current -> next = std::make_shared<element>(element(*value));
+        current -> next -> previous = current;
+        current = current -> next;
+    }
+}
 
 template <typename T>
 void doubleLinkedList<T>::pushFront(const T _value)
@@ -167,10 +189,7 @@ void doubleLinkedList<T>::remove(size_t _index)
     {
         for(unsigned index = 1; index < _index; index++, current = current -> next);
 
-        if(current -> next -> next)
-        {
-            current -> next -> next -> previous = current;
-        }
+        current -> next -> next -> previous = current;
         current -> next = current -> next -> next;
     }
 }
@@ -261,7 +280,7 @@ T doubleLinkedList<T>::max()
 {
     if(empty())
     {
-        throw std::out_of_range("List is empty!");
+        throw std::out_of_range("Container is empty!");
     }
 
     T result = first -> value;
