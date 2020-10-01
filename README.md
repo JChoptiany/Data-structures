@@ -59,6 +59,17 @@ Methods:
   * size() - returns number of elements
   * empty() - checks if the stack is empty
 
+#### Queue
+Methods:
+  * enqueue() - adds an element at the end the queue
+  * dequeue() - removes the element at the begin of the queue
+  * front() -  accesses the element at the begin of the queue
+  * back() - accesses the element at the end of the queue
+  * size() - returns number of elements
+  * empty() - checks if the queue is empty
+  * clear() - removes all the elements
+  * swap() - swaps two specified elements
+  
 ## Technologies
 Project is created with:
 * C++
