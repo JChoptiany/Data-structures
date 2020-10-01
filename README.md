@@ -50,8 +50,6 @@ Methods:
   * operator[] - accesses specified element with bounds checking 
   * swap() - swaps two specified elements
 
-
-  
 #### Stack
 Methods:
   * push() - adds an element at the of the stack
