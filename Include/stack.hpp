@@ -6,9 +6,6 @@
 template<typename T>
 struct stack
 {
-    typedef stackElement<T> element;
-    std::shared_ptr<element> top;
-
     stack() : top(nullptr) {}
 
     void push(T);
@@ -17,6 +14,10 @@ struct stack
     void clear();
     size_t size();
     T& peek();
+
+private:
+    typedef stackElement<T> element;
+    std::shared_ptr<element> top;
 };
 
 template<typename T>
