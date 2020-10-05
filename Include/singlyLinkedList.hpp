@@ -7,9 +7,6 @@
 template <typename T>
 struct singlyLinkedList
 {
-    typedef singlyLinkedElement<T> element;
-    std::shared_ptr<element> first;
-
     singlyLinkedList();
     singlyLinkedList(const std::initializer_list<T>&);
 
@@ -33,6 +30,8 @@ struct singlyLinkedList
     T& back();
 
 private:
+    typedef singlyLinkedElement<T> element;
+    std::shared_ptr<element> first;
     std::shared_ptr<singlyLinkedElement<T>> access(size_t);
 };
 
