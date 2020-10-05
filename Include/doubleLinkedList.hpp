@@ -7,9 +7,6 @@
 template <typename T>
 struct doubleLinkedList
 {
-    typedef doubleLinkedElement<T> element;
-    std::shared_ptr<element> first;
-
     doubleLinkedList();
     doubleLinkedList(const std::initializer_list<T>&);
 
@@ -33,6 +30,8 @@ struct doubleLinkedList
     T& back();
 
 private:
+    typedef doubleLinkedElement<T> element;
+    std::shared_ptr<element> first;
     std::shared_ptr<doubleLinkedElement<T>> access(size_t);
 };
 
