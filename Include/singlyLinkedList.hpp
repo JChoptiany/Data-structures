@@ -94,7 +94,7 @@ void singlyLinkedList<T>::pushBack(const T _value)
 template <typename T>
 void singlyLinkedList<T>::print(const std::string sign)
 {
-    if(size() != 0)
+    if(size() > 0)
     {
         std::shared_ptr<element> current = first;
         while (current -> next)
@@ -163,13 +163,14 @@ size_t singlyLinkedList<T>::find(const T _value)
             current = current -> next;
         }
     }
+
     return -1;
 }
 
 template <typename T>
 void singlyLinkedList<T>::remove(const size_t _index)
 {
-    if(_index >= size())
+    if(_index >= size() || _index < 0)
     {
         throw std::out_of_range("Out of range");
     }
@@ -191,7 +192,7 @@ void singlyLinkedList<T>::remove(const size_t _index)
 template <typename T>
 T& singlyLinkedList<T>::at(const size_t _index)
 {
-    if(_index >= size())
+    if(_index >= size() || _index < 0)
     {
         throw std::out_of_range("Out of range!");
     }
@@ -264,6 +265,7 @@ T singlyLinkedList<T>::min()
         }
         current = current -> next;
     }
+
     return result;
 }
 
@@ -287,13 +289,14 @@ T singlyLinkedList<T>::max()
         }
         current = current -> next;
     }
+
     return result;
 }
 
 template <typename T>
 void singlyLinkedList<T>::insert(const size_t _index, const T _value)
 {
-    if(_index > size())
+    if(_index > size() || _index < 0)
     {
         throw std::out_of_range("Out of range!");
     }
@@ -317,7 +320,7 @@ void singlyLinkedList<T>::insert(const size_t _index, const T _value)
 template <typename T>
 std::shared_ptr<singlyLinkedElement<T>> singlyLinkedList<T>::access(const size_t _index)
 {
-    if(_index >= size())
+    if(_index >= size() || _index < 0)
     {
         throw std::out_of_range("Out of range!");
     }
