@@ -296,7 +296,7 @@ T singlyLinkedList<T>::max()
 template <typename T>
 void singlyLinkedList<T>::insert(const size_t _index, const T _value)
 {
-    if(_index > size() || _index < 0)
+    if(_index > size())
     {
         throw std::out_of_range("Out of range!");
     }
@@ -320,7 +320,7 @@ void singlyLinkedList<T>::insert(const size_t _index, const T _value)
 template <typename T>
 std::shared_ptr<singlyLinkedElement<T>> singlyLinkedList<T>::access(const size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range!");
     }
