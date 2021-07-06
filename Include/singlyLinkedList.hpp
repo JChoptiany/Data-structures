@@ -170,7 +170,7 @@ size_t singlyLinkedList<T>::find(const T _value)
 template <typename T>
 void singlyLinkedList<T>::remove(const size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range");
     }
@@ -192,7 +192,7 @@ void singlyLinkedList<T>::remove(const size_t _index)
 template <typename T>
 T& singlyLinkedList<T>::at(const size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range!");
     }

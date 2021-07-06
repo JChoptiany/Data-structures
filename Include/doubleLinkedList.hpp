@@ -174,7 +174,7 @@ size_t doubleLinkedList<T>::find(const T _value)
 template <typename T>
 void doubleLinkedList<T>::remove(size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range");
     }
@@ -198,7 +198,7 @@ void doubleLinkedList<T>::remove(size_t _index)
 template <typename T>
 T& doubleLinkedList<T>::at(const size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range!");
     }
@@ -301,7 +301,7 @@ T doubleLinkedList<T>::max()
 template <typename T>
 void doubleLinkedList<T>::insert(const size_t _index, const T _value)
 {
-    if(_index > size() || _index < 0)
+    if(_index > size())
     {
         throw std::out_of_range("Out of range!");
     }
@@ -328,7 +328,7 @@ void doubleLinkedList<T>::insert(const size_t _index, const T _value)
 template <typename T>
 std::shared_ptr<doubleLinkedElement<T>> doubleLinkedList<T>::access(const size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range!");
     }

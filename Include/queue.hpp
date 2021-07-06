@@ -117,7 +117,7 @@ bool queue<T>::empty()
 template<typename T>
 void queue<T>::swap(const size_t lhsIndex, const size_t rhsIndex)
 {
-    if(lhsIndex >= size() || lhsIndex < 0 || rhsIndex >= size() || rhsIndex < 0)
+    if(lhsIndex >= size() || rhsIndex >= size())
     {
         throw std::out_of_range("Out of range!");
     }
@@ -130,7 +130,7 @@ void queue<T>::swap(const size_t lhsIndex, const size_t rhsIndex)
 template<typename T>
 T& queue<T>::at(const size_t _index)
 {
-    if(_index >= size() || _index < 0)
+    if(_index >= size())
     {
         throw std::out_of_range("Out of range!");
     }
